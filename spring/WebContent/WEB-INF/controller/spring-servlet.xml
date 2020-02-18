@@ -8,7 +8,7 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd"
 	>
-
-
-
+	<!-- Hellobean hello =new Hellobean -->
+	<bean id="hello" class="test.spring.bean.Hellobean"/>
+	
 </beans>
