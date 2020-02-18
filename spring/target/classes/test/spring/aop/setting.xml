@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+	>
+	
+	<!-- before,around,after(returing,throwing) advice spring 으로 하는 방법. -->
+	<bean id="target" class="test.spring.aop.BcExam" p:kor="1" p:eng="1" p:com="1"/>
+	
+	 	<bean id="logAroundAdvice" class="test.spring.aop.advice.LogAroundAdvice"/>
+		<bean id="logBeforeAdvice" class="test.spring.aop.advice.LogBeforeAdvice"/>
+		<bean id="logAfterReturningAdvice" class="test.spring.aop.advice.LogAfterReturningAdvice"/>
+		<bean id="logAfterThrowingAdvice" class="test.spring.aop.advice.LogAfterThrowingAdvice"/>
+		
+		<!-- 포인트컷을 정하여. 특정 메서드만 실행되도록 연관짓는것 -->
+		<bean id="classicPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+			<property name="mappedName" value="total"/>
+		</bean>
+		<!-- advice를 통해서 before인지 around 특정 사용가능 -->
+		<bean id="classicBeforeAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+			<property name="advice" ref="logBeforeAdvice" ></property>
+			<property name="pointcut" ref="classicPointCut"></property>
+		</bean>
+		
+		<!-- 실제 프록시 만들어서 사용하는것 -->
+		<bean id="exam" class="org.springframework.aop.framework.ProxyFactoryBean">
+			<property name="target" ref="target"  />
+			<property name="interceptorNames">
+				<list>
+					<value>logAroundAdvice</value>
+					<value>classicBeforeAdvisor</value>
+					<value>logAfterReturningAdvice</value>
+					<value>logAfterThrowingAdvice</value>
+				</list>
+			</property>
+		</bean>
+	
+</beans>

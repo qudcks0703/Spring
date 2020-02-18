@@ -1,5 +1,7 @@
 package test.spring.bean;
 
+import java.lang.reflect.Proxy;
+
 import javax.servlet.http.HttpServlet;
 
 import org.springframework.stereotype.Controller;
