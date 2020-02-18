@@ -8,7 +8,12 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd"
 	>
+	<!-- 자동 객체 생성 -->
+	<context:component-scan base-package="test.spring"/>
 	<!-- Hellobean hello =new Hellobean -->
-	<bean id="hello" class="test.spring.bean.Hellobean"/>
+	<!--	 	
+	<bean id="a" class="test.spring.bean.Hellobean"/>
+	<bean id="test" class="test.spring.bean.Testbean"/> 
+	-->
 	
 </beans>
