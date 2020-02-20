@@ -9,7 +9,9 @@
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd"
 	>
 	<!-- 자동 객체 생성 -->
+	<!-- 특정패키지안의 클래스를 스캔하고 인스터스를 생성한다. -->
 	<context:component-scan base-package="test.spring"/>
+	<bean id="mv" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="day1" class="java.util.Date"/>
 	<bean id="day2" class="java.util.Date"/>
 	<bean id="tdto1" class="test.spring.model.TvDTO">
@@ -35,5 +37,13 @@
 	<bean id="a" class="test.spring.bean.Hellobean"/>
 	<bean id="test" class="test.spring.bean.Testbean"/> 
 	-->
-	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="-1"/><!--  1메가바이트 업로드크기제한없음-->
+		<property name="defaultEncoding" value="utf-8"/>
+		
+	</bean>
 </beans>

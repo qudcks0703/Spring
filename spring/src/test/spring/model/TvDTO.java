@@ -13,6 +13,7 @@ public class TvDTO {
 	public int getCh() {
 		return ch;
 	}
+	
 	public void setCh(int ch) {
 		this.ch = ch;
 	}

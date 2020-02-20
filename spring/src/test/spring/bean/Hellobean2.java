@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import test.spring.model.TestDTO;
@@ -67,7 +68,7 @@ public class Hellobean2{
 	//model메서드없이 보내는방법
 	
 	@RequestMapping("hellotv")
-	public String hello4() {
+	public String hellotv() {
 		
 		System.out.println("hello4 매핑 메서드 호출");
 		return "/WEB-INF/views/spring0219/hellotv.jsp";
@@ -96,5 +97,23 @@ public class Hellobean2{
 	}
 	
 	
+	@RequestMapping("hello4")
+	@ResponseBody//리턴하는 문자열을뿌려줌
+	public String hello4() {
+		
+		return "<h1>zzzzzzzzzzzz</h1>";
+	}
+	@RequestMapping(value = "hello5",params = {"id","pw"}) //id가 있어야만 들어올수잇음
+	public String hello5() {
+		
+		return "/WEB-INF/views/spring0219/hellotv.jsp";
+	}
+	
+	@RequestMapping("hello6") //id가 있어야만 들어올수잇음
+	public String hello6(@RequestParam(value="msg",defaultValue = "zz") String msg,
+			@RequestParam(value="msa",required = false)String msa) {
+		
+		return "/WEB-INF/views/spring0219/hellotv.jsp";
+	}
 	
 }
