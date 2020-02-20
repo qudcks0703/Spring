@@ -15,16 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 import test.spring.model.TestDTO;
 import test.spring.model.TvDTO;
 
-@Controller
+//@Controller
 public class Hellobean2{
 
-	@RequestMapping("signup")
+	//@RequestMapping("signup")
 	public String signup() {
 		return "/WEB-INF/views/spring0219/signup.jsp";
 	}
 	//모델이 있으면 view에 데이터 전달가능
 	//단 requestmapping이 설정된 메서드만 사용가능
-	//@RequestMapping("pro")
+	@RequestMapping("pro")
 	public String pro1(TestDTO dto,Model model,ModelAndView modelview) {
 		System.out.println(dto.getId());
 		System.out.println(dto.getPw());

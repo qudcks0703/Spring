@@ -8,9 +8,21 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd"
 	>
+	<!-- 위에 작성해야함. 최우선 순위여야함 다운로드는 별도의 창을 만듬 페이지이동없음
+		BeanNameViewResolver 는 새로운 창을 구성할때 우선순위를 주기 위해 사용
+		지정하지 않으면 이동 먼저 처리하려함. property view에 대한 우선순위를 지정하는 옵션
+		다운로드는 페이지 이동전에 다운로드 창이 뜨게 하기 위해 반드시 우선순위0으로 해야함
+		view를 담당하는 ViewResolver에는 0보다 우선순위가 낮은 1을 지정
+	 -->
+	<bean id="fileDown" class="test.spring.bean.DownloadView"/>
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"></property>
+	</bean>
+	<!-- <bean id="hello1" class="test.spring.bean.Hellobean2"></bean> -->
 	<!-- 자동 객체 생성 -->
 	<!-- 특정패키지안의 클래스를 스캔하고 인스터스를 생성한다. -->
 	<context:component-scan base-package="test.spring"/>
+	
 	<bean id="mv" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="day1" class="java.util.Date"/>
 	<bean id="day2" class="java.util.Date"/>
@@ -40,10 +52,11 @@
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="1"></property>
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="-1"/><!--  1메가바이트 업로드크기제한없음-->
 		<property name="defaultEncoding" value="utf-8"/>
-		
 	</bean>
+	
 </beans>

@@ -8,7 +8,6 @@
 </head>
 <body>
 	<h2>upload success</h2>
-	${writer}
-	${img}
+	${file}
 </body>
 </html>
