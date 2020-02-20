@@ -33,6 +33,7 @@
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
-		<!-- /* 이거안됨  만약 모든페이지 처리라면 /해줘야함 아니라면 *.do 이런식 -->
+		<!-- /* 이거안됨  만약 모든페이지 처리라면 /해줘야함 아니라면
+		만약 다른거라면 *.do 이런식 -->
 	</servlet-mapping>
 </web-app>

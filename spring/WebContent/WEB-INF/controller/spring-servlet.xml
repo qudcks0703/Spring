@@ -10,6 +10,26 @@
 	>
 	<!-- 자동 객체 생성 -->
 	<context:component-scan base-package="test.spring"/>
+	<bean id="day1" class="java.util.Date"/>
+	<bean id="day2" class="java.util.Date"/>
+	<bean id="tdto1" class="test.spring.model.TvDTO">
+		<property name="power" value="true" ></property>
+		<property name="ch" value="10"></property>
+	</bean>
+	<bean id="tdto2" class="test.spring.model.TvDTO">
+		<property name="power" value="false" ></property>
+		<property name="ch" value="20"></property>
+	</bean>
+	
+	<bean id="dto1" class="test.spring.model.TestDTO">
+		<property name="id" value="spring"/>
+		<property name="pw" value="1111"/>
+		<property name="reg" ref="day2"/>
+	</bean>
+	<bean id="dto2" class="test.spring.model.TestDTO">
+		<constructor-arg name="pw" value="java"></constructor-arg>
+		<constructor-arg name="id" value="3333"></constructor-arg>
+	</bean>
 	<!-- Hellobean hello =new Hellobean -->
 	<!--	 	
 	<bean id="a" class="test.spring.bean.Hellobean"/>
