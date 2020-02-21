@@ -33,6 +33,8 @@ public class Hellobean2{
 		modelview.setViewName("/WEB-INF/views/spring0219/pro.jsp");
 		return "/WEB-INF/views/spring0219/pro.jsp";
 	}
+	
+	
 	@RequestMapping("pro")
 	public ModelAndView pro(TestDTO dto) {
 		System.out.println(dto.getId());

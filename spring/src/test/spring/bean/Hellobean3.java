@@ -22,7 +22,6 @@ public class Hellobean3{
 	ModelAndView mv=null;
 	@Autowired
 	DownloadView dlv=null;
-	
 	@RequestMapping("bye1")
 	public ModelAndView bye1() {
 		String path="D:\\Byoungchan\\git\\spring\\spring\\WebContent\\save\\dddd.PNG";

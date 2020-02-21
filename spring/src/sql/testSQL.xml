@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 
+  	내부 쿼리들의 이름..namespace명 ,sql태그의id속성값
+  	매퍼 파일 =>sql문장들을 모아서 작성해놓은 파일
+   -->
+  <mapper namespace="test">
+
+	<select id="usercount" resultType="int">
+		select count(*) from member
+	</select>  
+	<select id="maxAge" resultType="int">
+		select max(age) from member
+	</select>  
+	<select id="selectAll" resultType="tDTO">
+		select * from member
+	</select>  
+	<!-- parameter타입 -->
+  	<select id="getUser" parameterType="String" resultType="tDTO">
+  		select * from member where id=#{value}
+  	</select>
+  	<insert id="signup" parameterType="tDTO">
+  		insert into member values(#{id},#{pw},#{name},#{age})
+  	</insert>
+  	<update id="update" parameterType="hashmap">
+  		update member set pw=#{mapPw},name=#{mapName},age=#{mapAge} where id=#{mapId}
+  	</update>
+  	<delete id="delete" parameterType="String">
+  		delete from member where id=#{id}
+  	</delete>
+  	
+  </mapper>

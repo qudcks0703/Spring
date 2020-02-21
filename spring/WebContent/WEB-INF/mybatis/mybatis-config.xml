@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!--  위에 configuration을 설정했기때문에 사용 가능-->
+  <!-- mybatis 설정 xml -->
+<configuration>
+	<!-- typeAlias 세팅 ->줄이는 역할 sql에서 자주사용함-->
+	<typeAliases>
+		<typeAlias type="test.spring.model.TestMybatisDTO" alias="tmbdto"/>
+		<typeAlias type="test.spring.model.TestDTO" alias="tdto"/>
+	</typeAliases>
+	
+	<!-- 매퍼의 경로 세팅 -->
+	<mappers>
+		<mapper resource="sql/testSQL.xml"/>
+	</mappers>
+</configuration>

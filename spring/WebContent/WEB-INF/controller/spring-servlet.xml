@@ -21,7 +21,7 @@
 	<!-- <bean id="hello1" class="test.spring.bean.Hellobean2"></bean> -->
 	<!-- 자동 객체 생성 -->
 	<!-- 특정패키지안의 클래스를 스캔하고 인스터스를 생성한다. -->
-	<context:component-scan base-package="test.spring"/>
+	<context:component-scan base-package="test"/>
 	
 	<bean id="mv" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="day1" class="java.util.Date"/>
@@ -34,7 +34,8 @@
 		<property name="power" value="false" ></property>
 		<property name="ch" value="20"></property>
 	</bean>
-	
+	<!-- <bean id="tmbdto" class="test.spring.model.TestMybatisDTO"/> -->
+	<!-- 
 	<bean id="dto1" class="test.spring.model.TestDTO">
 		<property name="id" value="spring"/>
 		<property name="pw" value="1111"/>
@@ -43,7 +44,7 @@
 	<bean id="dto2" class="test.spring.model.TestDTO">
 		<constructor-arg name="pw" value="java"></constructor-arg>
 		<constructor-arg name="id" value="3333"></constructor-arg>
-	</bean>
+	</bean> -->
 	<!-- Hellobean hello =new Hellobean -->
 	<!--	 	
 	<bean id="a" class="test.spring.bean.Hellobean"/>
@@ -58,5 +59,30 @@
 		<property name="maxUploadSize" value="-1"/><!--  1메가바이트 업로드크기제한없음-->
 		<property name="defaultEncoding" value="utf-8"/>
 	</bean>
-	
+	<!-- DB mybatis setting -->
+	<!-- destory-method 해당 db가종료되어있을때 어떻게 할거냐 ->close라는 메서드를 사용하겟다. -->
+	<bean 
+		id="dataSource" 
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close" 
+		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+		p:url="jdbc:oracle:thin:@192.168.0.252:1521:orcl"
+		p:username="java11" 
+		p:password="java11"
+	/>
+	<!-- 커넥션 풀  
+		db연결 정보:datasource 매퍼위치와 type-alias에 대한 정보 :mybatis-config.xml에 설정
+		커넥션 connection =session
+	-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml"/>
+	</bean>
+	<!-- sql문 날릴때 필요한 것 
+		@autowired해서 아래 빈을 가져다 사용하게 됨
+		detory-method="clearCahe":종료시 무엇을 할지 지정하는 속성 ->마이바티스 장점
+		-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>	
 </beans>
