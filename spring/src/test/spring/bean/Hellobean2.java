@@ -57,7 +57,7 @@ public class Hellobean2{
 	public String hello2() {
 		System.out.println(dto.getId());
 		System.out.println(dto.getPw());
-		System.out.println(dto.getReg());
+		//System.out.println(dto.getReg());
 		return "/WEB-INF/views/spring0218/hello.jsp";
 	}
 	//requestparam 내가원하는 값으로 받을수잇는방법

@@ -9,10 +9,13 @@
 	<typeAliases>
 		<typeAlias type="test.spring.model.TestMybatisDTO" alias="tmbdto"/>
 		<typeAlias type="test.spring.model.TestDTO" alias="tdto"/>
+		<typeAlias type="member.model.dao.MemberVO" alias="MVO"/>
 	</typeAliases>
 	
 	<!-- 매퍼의 경로 세팅 -->
 	<mappers>
 		<mapper resource="sql/testSQL.xml"/>
+		<mapper resource="sql/mabatis.xml"/>
+		<mapper resource="sql/membersql.xml"/>
 	</mappers>
 </configuration>
