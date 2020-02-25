@@ -57,10 +57,12 @@ public class BoardBean {
 		return mv;
 	}
 	@RequestMapping("board_writepro.do")
-	public ModelAndView board_writepro(BoardVO vo) throws Exception{
+	public void board_writepro(BoardVO vo,HttpServletResponse response) throws Exception{
 		
 		bDAO.insertArticle(vo);
-		return board(null);
+		board(null);
+		//꿀이다
+		response.sendRedirect("/spring/board/board.do");
 	}
 	
 //	@RequestMapping("list.do")
