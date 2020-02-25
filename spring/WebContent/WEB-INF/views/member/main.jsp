@@ -48,6 +48,7 @@
 			<td><%=session.getAttribute("memId") %>님 환영합니다.<br />
 				<button onclick="window.location.href='/spring/member/logout.do'" >로그아웃</button>
 				<button onclick="window.location.href='/spring/member/modify.do'" >회원정보 변경</button>
+				<button onclick="window.location.href='/spring/board/board.do'" >게시판</button>
 			</td>
 		</tr>
 	</table>

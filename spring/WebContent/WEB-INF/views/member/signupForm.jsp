@@ -6,7 +6,24 @@
 	<meta charset="UTF-8">
 	<title>회원가입</title>
 	<link href="/spring/resources/style.css" rel="stylesheet" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 	<script>
+		$(document).ready(function(){
+			$("#id").change(function(){
+				id=$("#id").val();
+				$.ajax({
+					type:"post",
+					url:"/spring/member/ajaxIdAvail.do",
+					data:{id:id},
+					success:function(data){
+						console.log(data); 
+						$("#idCheckRes").val(data);
+					}
+				});
+			});  
+		});
+		
 		// 유효성 검사
 		function check(){
 			var inputs = document.inputForm;
@@ -31,8 +48,12 @@
 				alert("이름을 입력하세요.");
 				return false;
 			}
+			if(inputs.idCheckRes.value=="이미 사용중인 id"){
+				alert("이미 사용중인 아이디입니다.")
+				return false;
+			}
 		}
-		// 아이디 중복 검사 함수
+	/* 	// 아이디 중복 검사 함수
 		//					   inputForm 매개변수에 form 전체를 받음.(this.form)
 		function confirmIdPopup(inputForm){	
 			// 아이디 기입 재확인.
@@ -48,7 +69,7 @@
 			open(url,"confirm", "toolbar=no, location=no, status=no, menubar=no, scrollbars=no, resizalbe=no, width=300, height=200");
 			
 		}
-	
+	 */
 	</script>
 </head>
 <c:if test="${memId!=null}">
@@ -61,16 +82,20 @@
 <body>
 	<br />
 	<h1 align="center">회원가입</h1>
-	<form action="/spring/member/signuppro.do" enctype="multipart/form-data" method="post" name="inputForm" >
+	<form action="/spring/member/signuppro.do" onsubmit="return check()" enctype="multipart/form-data" method="post" name="inputForm" >
 	<table>
 		<tr>
 			<td>아이디 * </td>
-			<td><input type="text" name="id" /></td>
+			<td><input type="text" name="id" id="id"/></td>
 		</tr>
 		<tr>
+			<td>아이디  사용가능여부</td>
+			<td><input style="color:red;" type="text" id="idCheckRes" name="idCheckRes" disabled/></td>
+		</tr>
+		<!-- <tr>
 			<td>아이디 중복검사</td>
 			<td><input type="button" value="중복검사" onclick="confirmIdPopup(this.form)" /></td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td>비밀번호 * </td>
 			<td><input type="password" name="pw" /></td>

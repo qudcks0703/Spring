@@ -11,11 +11,14 @@
   		select count(*) from smember where id=#{id} and pw=#{pw}
   	</select>
   	<select id="modify" parameterType="String" resultType="MVO">
-  		select * from smember where id=#{id}
+  		select * from smember where id=#{value}
   	</select>
   	<update id="modifypro" parameterType="MVO">
   		update smember set pw=#{pw},name=#{name},birth=#{birth},
   		email=#{email} where id=#{id}
   	</update>
+  	<select id="idavail" parameterType="String" resultType="int">
+  		select count(*) from smember where id=#{value}
+  	</select>
   </mapper>
   
