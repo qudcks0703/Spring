@@ -28,6 +28,7 @@
 				/WEB-INF/controller/spring-servlet.xml
 				/WEB-INF/controller/member-controller.xml
 				/WEB-INF/controller/board-controller.xml
+				/WEB-INF/aop/aop-config.xml
 			</param-value>
 		</init-param>
 	</servlet>
