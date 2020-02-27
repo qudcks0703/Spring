@@ -6,7 +6,7 @@ import board.model.dao.BoardVO;
 
 public interface BoardDAO {
 	// 게시글 저장
-	public void insertArticle(BoardVO vo) throws Exception;
+	public BoardVO insertArticle(BoardVO vo) throws Exception;
 	// 전체글 개수 검색
 	public int getArticleCount() throws Exception;
 	// 게시글 범위지정해 가져오기
@@ -19,4 +19,5 @@ public interface BoardDAO {
 	public int updateArticle(BoardVO vo) throws Exception;
 	// 게시글 삭제
 	public int deleteArticle(int num, String passwd) throws Exception;
+	public int getsize() throws Exception;
 }

@@ -9,14 +9,14 @@
 	<link href="/spring/resources/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1 align="center">글 작성</h1>
-<form action="/spring/board/board_writepro.do" method="post">
-	<input type="hidden" name="writer" value="${memId}">
+<h1 align="center">글 수정</h1>
+<form action="/spring/board/board_updatepro.do" method="post">
 	<table>
 		<tr>
 			<td>제목</td>
-			<td><input type="text" name="subject"></td>
-			
+			<td><input type="text" name="subject" value="${bdto.subject}"></td>
+			<input type="hidden" name="writer" value="${memId}">
+			<input type="hidden" name="num" value="${bdto.num}">
 		</tr>
 		<tr>
 			<td>비밀번호</td>
@@ -24,10 +24,10 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea name="content" cols="30" rows="15"></textarea></td>
+			<td><textarea name="content" cols="30" rows="15">${bdto.content}</textarea></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="작성"></td>
+			<td colspan="2"><input type="submit" value="수정"></td>
 		</tr>
 		
 	</table>

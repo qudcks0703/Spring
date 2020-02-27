@@ -15,8 +15,13 @@ public class BoardDAOimpl implements BoardDAO {
 	}
 
 	@Override
-	public void insertArticle(BoardVO vo) throws Exception {
-		sqlSession.insert("board.write", vo);
+	public BoardVO insertArticle(BoardVO vo) throws Exception {
+		int check=sqlSession.insert("board.write", vo);
+		BoardVO bdto=null;
+		if(check==1) {
+			bdto=sqlSession.selectOne("board.getMaxArticle");
+		}
+		return bdto;
 	}
 
 	@Override
@@ -36,8 +41,8 @@ public class BoardDAOimpl implements BoardDAO {
 
 	@Override
 	public BoardVO getArticle(int num) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return sqlSession.selectOne("board.getArticle", num);
 	}
 
 	@Override
@@ -48,14 +53,21 @@ public class BoardDAOimpl implements BoardDAO {
 
 	@Override
 	public int updateArticle(BoardVO vo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		
+		return sqlSession.update("board.update", vo);
 	}
 
 	@Override
 	public int deleteArticle(int num, String passwd) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int getsize() throws Exception {
+		
+		return sqlSession.selectOne("board.getsize");
 	}
 
 

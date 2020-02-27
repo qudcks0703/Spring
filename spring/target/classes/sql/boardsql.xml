@@ -6,14 +6,30 @@
   		<select id="getArticleCount" resultType="int">
   			select count(*) from sboard
   		</select>
+  		<select id="getArticle" resultType="BVO" parameterType="int">
+  			<!-- select * from sboard where num=#{value} -->
+  			select * from (select  rownum r,a.* from 
+  			(select sboard.* from sboard order by num desc) a )
+  			where num=#{value}
+  		</select>
   		<!-- 한줄에 나올 result를 생각하면됨  -->
   		<select id="getArticles" parameterType="hashmap" resultType="BVO">
   			<!-- <![CDATA[]]>  <>& 포함된 쿼리 작성 -->
-  			select  rownum r,a.* from (select sboard.* from sboard order by num desc) 
-  			a where rownum between #{start} and #{end}
+  			select * from (select  rownum r,a.* from 
+  			(select sboard.* from sboard order by num desc) a )
+  			where r between #{start} and #{end}
+  		</select>
+  		<select id="getMaxArticle" resultType="BVO">
+  			select * from sboard where num=(select max(num) from sboard)
+  		</select>
+  		<select id="getsize" resultType="int">
+  			select min(num) from sboard
   		</select>
   		<insert id="write" parameterType="BVO">
   			insert into sboard values (sboard_seq.nextval,#{writer},#{pw},#{subject},#{content},sysdate,0)
   		</insert>
+  		<update id="update" parameterType="BVO">
+  			update sboard set subject=#{subject},content=#{content} where num=#{num}
+  		</update>
   </mapper>
   
