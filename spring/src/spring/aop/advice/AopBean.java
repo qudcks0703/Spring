@@ -22,6 +22,11 @@ public class AopBean {
         System.out.println("하윙");
         return "aop/testaop";
     }
+    @RequestMapping("logout.do")
+    public String main1() {
+    	System.out.println("하윙");
+    	return "redirect:main.do";
+    }
 
     @RequestMapping("main2.do")
     public String main2(String id) {

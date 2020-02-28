@@ -8,12 +8,22 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
 public class Advice2 {
 	 
+		@Pointcut("execution(* spring..*(..))")
+		public void testPc() {
+			System.out.println("하이룽");
+		}
+		
+		@Around("testPc()")
+		public Object zz(ProceedingJoinPoint j) throws Throwable {
+			return j.proceed();
+		}
 		@Before("execution(* spring.aop..*(..))")
 	    public void before(JoinPoint joinPoint) {
 		 	System.out.println(joinPoint.getSignature().toShortString());
