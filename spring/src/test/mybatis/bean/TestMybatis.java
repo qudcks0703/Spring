@@ -25,65 +25,25 @@ public class TestMybatis {
 		System.out.println(sqlSession);
 		return "spring0218/hello";
 	}
-	@RequestMapping("testtable")
-	public ModelAndView test() {
-		int count=(Integer)sqlSession.selectOne("test.usercount");
-		int max=(Integer)sqlSession.selectOne("test.maxAge");
-		List dto=sqlSession.selectList("test.selectAll");
-		mv.addObject("count", count);
-		mv.addObject("max", max);
-		mv.addObject("dto", dto);
-		String id="qudcks";
-		TestDTO getid=(TestDTO)sqlSession.selectOne("test.getUser",id);
-		mv.addObject("getid", getid);
-		mv.setViewName("spring0221/test");
-		return mv;
-	}
 	
-	@RequestMapping("signup")
-	public ModelAndView signup() {
-		
-		mv.setViewName("spring0221/signup");
-		return mv;
-	}
-	@RequestMapping("update")
-	public ModelAndView update() {
-		
-		TestDTO dto=(TestDTO)sqlSession.selectOne("test.getUser","qudcks");
-		mv.addObject("dto", dto);
-		mv.setViewName("spring0221/update");
-		return mv;
-	}
-	@RequestMapping("delete")
-	public ModelAndView delete() {
-		
-		mv.setViewName("spring0221/delete");
-		return mv;
-	}
-	@RequestMapping("signuppro")
-	public ModelAndView signuppro(TestDTO dto) {
-		//sqlSession.selectOne("signup");
-		sqlSession.insert("signup",dto);
-		mv.addObject("dto", dto);
-		mv.setViewName("spring0221/signuppro");
-		return mv;
-	}
-	@RequestMapping("updatepro")
-	public ModelAndView updatepro(String pw,int age,String name) {
-		//sqlSession.selectOne("signup");
-		HashMap map=new HashMap();
-		map.put("mapId", "qudcks");
-		map.put("mapPw", pw);
-		map.put("mapName", name);
-		map.put("mapAge", age);
-		sqlSession.update("update",map);
-		mv.setViewName("spring0221/updatepro");
-		return mv;
-	}
-	@RequestMapping("deletepro")
-	public ModelAndView deletepro(String id) {
-		sqlSession.delete("delete", id);
-		mv.setViewName("spring0221/deletepro");
-		return mv;
-	}
+   @RequestMapping("/test.do")
+   public String test() {
+       return "test";
+   }    
+   
+   /**
+    * Tiles를 사용(header, left, footer 포함)
+    */        
+   @RequestMapping("/testPage.do")
+   public String testPage() {
+       return "test.page";
+   }
+   
+   /**
+    * Tiles를 사용(header, left, footer 제외)
+    */    
+   @RequestMapping("/testPart.do")
+   public String testPart() {
+       return "test.part";
+   }    
 }
