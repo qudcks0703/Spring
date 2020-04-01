@@ -6,17 +6,56 @@
     <meta charset="UTF-8">
     <title>제목</title>
    	<tiles:insertAttribute name="top"/>
+	<style>
+		.jumbotron{
+			height:700px;
+			background-color:#FF8000;
+		}
+		.container{
+			margin-top:30px;
+		}
+		@media (min-width: 768px) {
+			#nav{
+				position:absolute;
+				width:25%;
+				height:90%;
+			}
+			#section{
+				position:relative;
+				left:25%;
+				width:74.8888%;
+				height:100%;
+			}
+		}			
+		@media (max-width: 768px) {
+			.jumbotron{
+				padding: 0px 0px;
+			}
+			#nav{
+				height:15%;
+			}
+			#section{ 
+				height:70%;
+			}
+			#footer{
+				height:15%
+			}
+				  /* #nav,#section,#footer{
+		    display: none;
+		  } */
+		}
+ 	</style>
 </head>
 <body>
-<div class="container" style="margin-top:30px;">
-  <div class="jumbotron" style="height:700px;padding:0px;background-color:#FF8000;">
-		<nav style="height:15%">
+<div class="container">
+  <div class="jumbotron">
+		<nav id="nav">
 			<tiles:insertAttribute name="nav"/>
 		</nav>  
-  		<section style="height:70%;background-color:#58ACFA;">
+  		<section id="section">
 			<tiles:insertAttribute name="content"/>
 		</section>
-		<footer style="height:15%">
+		<footer id="footer">
 			<tiles:insertAttribute name="footer"/>
 		</footer>
   </div> <!-- jumbotron -->
